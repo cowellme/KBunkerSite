@@ -1,0 +1,132 @@
+﻿body {
+    margin: 0;
+
+}
+
+.menu-button {
+    font-family: "Roboto", sans-serif;
+    width: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 45px;
+    border-radius: 10px;
+    border: 0;
+    background-color: rgb(255, 255, 255);
+    font-size: 20px;
+}
+
+.wather-mark {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    text-align: right;
+    font-size: 10px;
+    padding-right: 20px;
+}
+
+.logo {
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    font-weight: 500;
+}
+
+.menu {
+    width: 100vw;
+    height: 6vh;
+    background-color: rgb(190, 190, 190);
+    border-bottom: 2px solid rgb(158, 158, 158);
+}
+
+.botton {
+    border-top: 2px solid rgb(158, 158, 158);
+    height: calc(100vh - 700px - 6vh - 81px);
+    width: 100vw;
+    background-color: rgb(190, 190, 190);
+}
+
+.history {
+    width: 100vw;
+    height: calc(100vh - 6vh - 196px);
+    background-color: rgb(190, 190, 190);
+    overflow-x: auto;
+}
+
+.history::-webkit-scrollbar {
+    display: none;
+    /* Для Chrome, Safari и Opera */
+}
+
+.null-margin {
+    margin: 0;
+}
+
+.history-box {
+    font-family: "Roboto", sans-serif;
+    background-color: aliceblue;
+    margin: 10px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 50%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.text-centre {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.text-right {
+    font-family: "Roboto", sans-serif;
+    text-align: right;
+}
+
+.w400 {
+    font-weight: 300;
+}
+
+.line-break {
+    width: 100vw;
+    height: 81px;
+
+}
+
+.history-title {
+    font-family: "Roboto", sans-serif;
+    width: max-content;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+
+@media (max-width: 999px) {
+    .menu-button {
+        width: calc(50% - 20px);
+    }
+
+    .history-box {
+        font-family: "Roboto", sans-serif;
+        background-color: aliceblue;
+        margin: 0;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        padding: 20px;
+        width: calc(97% - 40px);
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .mt20{
+        margin-top: 20px;
+    }
+}

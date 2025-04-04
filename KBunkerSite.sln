@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBunkerSite.Server", "KBunkerSite.Server\KBunkerSite.Server.csproj", "{84897C2C-5207-4877-A3F0-D32B9F6F5A01}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "kbunkersite.client", "kbunkersite.client\kbunkersite.client.esproj", "{FEC647CC-2214-4B28-97AE-39AF5C774701}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84897C2C-5207-4877-A3F0-D32B9F6F5A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84897C2C-5207-4877-A3F0-D32B9F6F5A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84897C2C-5207-4877-A3F0-D32B9F6F5A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84897C2C-5207-4877-A3F0-D32B9F6F5A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC647CC-2214-4B28-97AE-39AF5C774701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC647CC-2214-4B28-97AE-39AF5C774701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC647CC-2214-4B28-97AE-39AF5C774701}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FEC647CC-2214-4B28-97AE-39AF5C774701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC647CC-2214-4B28-97AE-39AF5C774701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC647CC-2214-4B28-97AE-39AF5C774701}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {448B3F69-5C62-41BF-BD08-3F6D665DD66C}
+	EndGlobalSection
+EndGlobal

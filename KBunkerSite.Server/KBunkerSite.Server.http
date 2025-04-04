@@ -1,0 +1,6 @@
+@KBunkerSite.Server_HostAddress = http://localhost:5250
+
+GET {{KBunkerSite.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
