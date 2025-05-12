@@ -1,4 +1,5 @@
-﻿using KbpApi.Models;
+﻿using System.Text;
+using KbpApi.Models;
 using KbpApi.Works;
 using KBunkerSite.Server.Works;
 using Microsoft.AspNetCore.Mvc;
@@ -89,40 +90,64 @@ namespace KBunkerSite.Server.Controllers
         }
 
         [HttpGet]
+        [Route("get-bunkers")]
+        public IActionResult GetBunker()
+        {
+            try
+            {
+                var response = new List<Address>();
+                var items = Database.GetItems();
+                var newHistory = new History();
+
+                var filterItems = items
+                    .GroupBy(it => it.Code)
+                    .Select(g => g.OrderByDescending(x => x.SaveTime).First())
+                    .ToList();
+
+                foreach (var item in filterItems) newHistory.Items.Add(item);
+                newHistory.Save();
+
+                var sortedItemsByTime = newHistory.Items.OrderByDescending(x => x.SaveTime).ToList();
+
+                var responseHistory = new History
+                {
+                    Items = sortedItemsByTime
+                };
+
+                foreach (var address in sortedItemsByTime)
+                {
+                    response.Add(new Address
+                    {
+                        Code = address.Code,
+                        Id = address.Id,
+                        Latitude = address.Latitude,
+                        Longitude = address.Longitude,
+                        Name = address.Code
+                    });
+                }
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public IActionResult GetAddresses()
         {
-            var response = new List<Address>();
-            var items = Database.GetItems();
-            var newHistory = new History();
-
-            var filterItems = items
-                .GroupBy(it => it.Code)
-                .Select(g => g.OrderByDescending(x => x.SaveTime).First())
-                .ToList();
-
-            foreach (var item in filterItems) newHistory.Items.Add(item);
-            newHistory.Save();
-
-            var sortedItemsByTime = newHistory.Items.OrderByDescending(x => x.SaveTime).ToList();
-
-            var responseHistory = new History
+            try
             {
-                Items = sortedItemsByTime
-            };
-
-            foreach (var address in sortedItemsByTime)
-            {
-                response.Add(new Address
-                {
-                    Code = address.Code,
-                    Id = address.Id,
-                    Latitude = address.Latitude,
-                    Longitude = address.Longitude,
-                    Name = address.Code
-                });
+                var response = Database.GetAddresses();
+                return Ok(response);
             }
-
-            return Ok(response);
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                return BadRequest();
+            }
         }
 
         [HttpGet]
@@ -132,6 +157,35 @@ namespace KBunkerSite.Server.Controllers
             Database.Reset();
 
             return Ok("Database reseted!");
+        }
+
+        [HttpGet("csv")]
+        public IActionResult ExportToCsv()
+        {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            var encoding = Encoding.GetEncoding(1251); // Windows-1251
+
+            var data = History.Get();
+            var csvBuilder = new StringBuilder();
+            csvBuilder.AppendLine("Id,Название,Широта,Долгота,Код,Адрес,Время обновления");
+
+            foreach (var item in data.Items)
+            {
+                csvBuilder.AppendLine($"{item.Id},{EscapeCsv(item.Code)},{item.Latitude},{item.Longitude},{item.CodeDot},{EscapeCsv(item.NameDot)},{item.SaveTime}");
+            }
+
+            var bytes = encoding.GetBytes(csvBuilder.ToString());
+            return File(bytes, "text/csv; charset=windows-1251", "export.csv");
+        }
+
+        private string EscapeCsv(string value)
+        {
+            // Экранирование специальных символов в CSV
+            if (value.Contains(",") || value.Contains("\"") || value.Contains("\n"))
+            {
+                return $"\"{value.Replace("\"", "\"\"")}\"";
+            }
+            return value;
         }
 
     }

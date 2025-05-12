@@ -32,7 +32,7 @@ namespace KBunkerSite.Server.Works
             {
                 using var db = new ApplicationContext();
                 var addresses = db.Addresses.ToList();
-                return addresses;
+                return addresses.DistinctBy(x => x.Name).ToList();
             }
             catch (Exception e)
             {

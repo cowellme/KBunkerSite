@@ -179,7 +179,8 @@ namespace KBunkerSite.Server.Works
                     name = "БиоСпарк: Бункер №" + name;
                 }
 
-                if (name.Length > 64) name.Remove(64);
+                if (name.ToCharArray().Length > 32)
+                    name = name.Remove(32);
 
                 
                 items.Add(new Item
